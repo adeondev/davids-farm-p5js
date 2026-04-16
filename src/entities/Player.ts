@@ -9,7 +9,7 @@ export class Player {
     this.x = x;
     this.y = y;
     this.speed = 200;
-    this.size = 38;
+    this.size = 32;
   }
 
   public update(): void {
