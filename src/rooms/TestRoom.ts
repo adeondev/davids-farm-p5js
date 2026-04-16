@@ -2,10 +2,10 @@
 
 import { Room, Game } from '../core/index.js';
 import { Player } from '../entities/index.js';
+import { TestBlock } from '../entities/index.js';
 import { Camera } from '../systems/camera/index.js';
 
 export class TestRoom extends Room {
-  private player!: Player;
   private camera!: Camera;
 
   constructor() {
@@ -17,7 +17,23 @@ export class TestRoom extends Room {
   }
 
   enter(): void {
-    this.player = new Player(this.width / 2, this.height / 2);
+    this.createLayer('background', { depth: 0 });
+    this.createLayer('entities', { depth: 50 });
+    this.createLayer('foreground', { depth: 100 });
+
+    for (let i = 0; i < 20; i++) {
+      const x = Math.random() * this.width;
+      const y = Math.random() * this.height;
+      this.addObject(new TestBlock(x, y, 64, 60, 120, 200, 100), 'background');
+    }
+
+    const player = this.addObject(new Player(this.width / 2, this.height / 2), 'entities');
+
+    for (let i = 0; i < 10; i++) {
+      const x = Math.random() * this.width;
+      const y = Math.random() * this.height;
+      this.addObject(new TestBlock(x, y, 48, 200, 60, 80, 160), 'foreground');
+    }
 
     this.camera = new Camera({
       viewport: Game.viewport,
@@ -28,15 +44,17 @@ export class TestRoom extends Room {
       }
     });
 
-    this.camera.setTarget(this.player);
+    this.camera.setTarget(player);
     this.camera.setBounds({ x: 0, y: 0, w: this.width, h: this.height });
     this.camera.snapToTarget();
   }
 
-  exit(): void {}
+  exit(): void {
+    this.destroyAllObjects();
+  }
 
   update(): void {
-    this.player.update();
+    this.updateLayers();
     this.camera.update();
   }
 
@@ -47,7 +65,7 @@ export class TestRoom extends Room {
       this.grid.draw(this.width, this.height);
     }
 
-    this.player.draw();
+    this.drawLayers();
     this.camera.reset();
   }
 }

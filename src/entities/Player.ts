@@ -1,18 +1,18 @@
 /// <reference types="p5/global" />
-export class Player {
-  public x: number;
-  public y: number;
+
+import { GameObject } from '../core/GameObject.js';
+
+export class Player extends GameObject {
   public size: number;
   private speed: number;
 
   constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
+    super(x, y);
     this.speed = 200;
     this.size = 32;
   }
 
-  public update(): void {
+  update(): void {
     let moveX = 0;
     let moveY = 0;
 
@@ -32,7 +32,7 @@ export class Player {
     }
   }
 
-  public draw(): void {
+  draw(): void {
     fill(0);
     noStroke();
     rect(this.x, this.y, this.size, this.size);
