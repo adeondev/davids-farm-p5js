@@ -1,1 +1,3 @@
 # davids-farm-p5js
+
+NÃO FAZ SISTEMA DE SALA, VOU FAZER DEPOIS

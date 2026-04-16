@@ -1,0 +1,25 @@
+{
+  "name": "davids-farm-p5js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "p5.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeondev/davids-farm-p5js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adeondev/davids-farm-p5js/issues"
+  },
+  "homepage": "https://github.com/adeondev/davids-farm-p5js#readme",
+  "devDependencies": {
+    "@types/p5": "^1.7.7",
+    "typescript": "^6.0.2"
+  }
+}
